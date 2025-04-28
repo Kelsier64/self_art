@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+            flex-direction: column;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Fixed 4 columns */
+            gap: 0px;
+            width: 90%;
+            max-width: 1024px;
+            font-size: 0;
+        }
+
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: repeat(2, 1fr); /* 2 columns for smaller screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery {
+                grid-template-columns: 1fr; /* 1 column for very small screens */
+            }
+        }
+
+        .gallery img {
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+    <form action="/generate" method="post" style="margin-bottom: 20px; text-align: center;">
+        <input type="text" name="prompt" placeholder="Enter text to generate image" required style="padding: 10px; width: 70%;">
+        <button type="submit" style="padding: 10px;">Generate</button>
+    </form>
+    <div class="gallery">
+        {% for image in images %}
+        <a href="/puzzle/{{ loop.index }}">
+            <img src="{{ image }}" alt="Image">
+        </a>
+        {% endfor %}
+    </div>
+</body>
+</html>

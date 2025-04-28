@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+            flex-direction: column;
+        }
+        .puzzle {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="puzzle">
+        <img src="/uploads/{{ image_id }}.jpg" alt="Puzzle Piece">
+        <p>Prompt: {{ prompt}}</p>
+    </div>
+    <form action="/reveal" method="post">
+        <input type="hidden" name="image_id" value="{{ image_id }}">
+        <input type="password" name="password" placeholder="Enter password to reveal original image" required>
+        <button type="submit">Reveal</button>
+    </form>
+</body>
+</html>
